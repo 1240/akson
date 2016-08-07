@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget id="ru.akson.akson" version="1.1.6" versionCode="59" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+	<name>Аксон</name>
+	<description>Интернет-гипермаркет Аксон</description>
+	<author href="http://www.akson.ru/" email="lebedevdv@akson.ru">Аксон</author>
+
+	<gap:platform name="android" />
+
+	<feature name="http://api.phonegap.com/1.0/device" />
+	<feature name="http://api.phonegap.com/1.0/network"/>
+	<access origin="*" />
+
+	<preference name="autorotate" value="true"/>
+	<!-- <preference name="orientation" value="portrait" />all: default means both landscape and portrait are enabled -->
+	<preference name="fullscreen" value="false" /><!-- all: hides the status bar at the top of the screen -->
+	<preference name="android-minSdkVersion" value="14" /><!-- android: min version of android is 2.3 -->
+
+	<preference name="splash-screen-duration" value="3000"/>
+
+	<!-- Define app icon for each platform. -->
+	<icon src="www/images/icons/icon-96x96.png" width="96" height="96" />
+	<icon src="www/images/icons/icon-36x36.png" gap:platform="android" gap:density="ldpi" />
+	<icon src="www/images/icons/icon-48x48.png" gap:platform="android" gap:density="mdpi" />
+	<icon src="www/images/icons/icon-72x72.png" gap:platform="android" gap:density="hdpi" />
+	<icon src="www/images/icons/icon-96x96.png" gap:platform="android" gap:density="xhdpi" />
+
+	<!-- Define app splash screen for each platform. -->
+	<gap:splash src="www/images/white.png" />
+	<gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+	<gap:plugin name="com.manateeworks.barcodescanner" version="1.6.1" />
+	<gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+	<allow-navigation href="*" />
+</widget>

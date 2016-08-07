@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="ru.akson.akson" version="1.1.6" versionCode="59" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>Аксон</name>
+    <description>Интернет-гипермаркет Аксон</description>
+    <author email="lebedevdv@akson.ru" href="http://www.akson.ru/">Аксон</author>
+    <gap:platform name="android" />
+    <access origin="*" />
+    <icon height="96" src="www/images/icons/icon-96x96.png" width="96" />
+    <icon gap:density="ldpi" gap:platform="android" src="www/images/icons/icon-36x36.png" />
+    <icon gap:density="mdpi" gap:platform="android" src="www/images/icons/icon-48x48.png" />
+    <icon gap:density="hdpi" gap:platform="android" src="www/images/icons/icon-72x72.png" />
+    <icon gap:density="xhdpi" gap:platform="android" src="www/images/icons/icon-96x96.png" />
+    <gap:splash src="www/images/white.png" />
+    <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+    <gap:plugin name="com.manateeworks.barcodescanner" version="1.6.1" />
+    <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+    <allow-navigation href="*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="autorotate" value="true" />
+    <preference name="fullscreen" value="false" />
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="splash-screen-duration" value="3000" />
+</widget>

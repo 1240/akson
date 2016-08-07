@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Интернет-гипермаркет Аксон</title>
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style>
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #fff url('images/body-bg.png') repeat 0 0;
+			text-align: center;
+			position: relative;
+		}
+		#mobile-app-content {
+			display: none;
+			border: 0;
+			width: 100%;
+			height: 100%;
+		}
+		#scanBtn{
+			display: none;
+			position: absolute;
+            background: transparent url('images/barcode.png') 50% 50% no-repeat;
+            background-size: 80% 45%;
+			outline: none;
+            width: 27px;
+            height: 48px;
+            left: 48px;
+            top: 0px;
+		}
+		@media (max-width:800px)
+		{
+			#scanBtn{
+                width: 38px;
+                height: 62px;
+                left: 62px;
+			}
+		}
+        @media (max-width: 375px) {
+            #scanBtn{
+                width: 34px;
+                height: 56px;
+                left: 56px;
+            }
+        }
+		p {
+			margin: 50px 0 0;
+			text-align: center;
+			font-size: 30px;
+		}
+		.load-img {margin: 50px auto 0;}
+		.load-img, .load-p {display: none;}
+		.load-block {
+			height: 100%;
+		}
+		.load-block .load-img, .load-block .load-p {display: block;}
+	</style>
+	<script src="cordova.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/MWBConfig.js"></script>
+	<script>
+
+		var RedirectToSite = function()
+		{
+			//window.location.href = 'http://www.akson-quick.ru/m/?MOBILE_APP=Y&osrc_type=mobile-app&osrc_comment=android&testonly=1';
+			document.getElementById('mobile-app-content').attributes.getNamedItem('src').value = 'http://akson.ru/m/?MOBILE_APP=Y&osrc_type=mobile-app&osrc_comment=android';
+			document.getElementById('mobile-app-content').style.display = "block";
+			document.getElementById('mobile-app-preloader').style.display = "none";
+			setTimeout(function() {
+				document.getElementById('scanBtn').style.display = "block";
+			}, 2000);
+
+		};
+
+		var scannerCallback = function(res){
+
+			document.getElementById('mobile-app-content').attributes.getNamedItem('src').value = 'http://akson.ru/m/catalog/?set_filter=Y&MOBILE_APP=Y&osrc_type=mobile-app&osrc_comment=android&q=' + res.code;
+		};
+
+		var startScanningExtra = function()
+		{
+			scanner.startScanning(MWBSInitSpace.init, scannerCallback);
+		};
+
+
+
+		// событие срабатывает при загрузке устройства
+		var OnDeviceReady = function()
+		{
+
+				try
+				{
+				// проверяем доступность сети интернет для загрузки нашего мобильного сайта
+				var networkState = navigator.connection.type;
+				//alert(networkState);
+				if( networkState !== "none" )
+				{
+					RedirectToSite();
+				}
+				else
+				{
+					// либо показываем сообщение что нужен интернет
+					document.getElementById('body-tag').removeAttribute('class');
+					document.getElementById('body-tag').innerHTML = '<p>Для работы приложения необходимо соединение с сетью интернет.</p>';
+				}
+			}
+			catch(e)
+			{
+				RedirectToSite();
+			}
+
+
+
+		};
+
+		// и вешаем само событие на загрузку устройства
+		function onLoad() {
+			document.addEventListener("deviceready", OnDeviceReady, false);
+		}
+	</script>
+</head>
+<body onload="onLoad()">
+	<div id="body-tag" class="load-block">
+		<iframe id="mobile-app-content" name="mobile_app_content" src="">
+
+		</iframe>
+
+		<div class="mobile-app-preloader" id="mobile-app-preloader">
+			<img class="load-img" src="images/logo.png" alt="Аксон" width="106" height="106" />
+			<p class="load-p">Подождите немного<br/>Идет загрузка</p>
+			<p class="load-p"><img src="images/712.GIF"></p>
+		</div>
+
+		<div onclick="startScanningExtra()" id="scanBtn"></div>
+
+
+	</div>
+</body>
+</html>
